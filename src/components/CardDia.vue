@@ -1,52 +1,42 @@
 <template>
     <div class="day-container">
-        <div class="flex flex-row border-b-4 justify-between">
-          <h2>Hoje</h2>
-          <div v-if="firstElement" @click="this.$router.push({ name: 'NovaDespesa'})" class="button-add-new">
-            <img src="src/assets/add-icon.svg" />
-          </div>
+        <div class="flex flex-row justify-between">
+          <h2> {{ getDay }}</h2>
         </div>
         <div class="days">
-          <div class="each-day-container">
-            <div>
-              <h3>Almoço médico</h3>
-              <p>22:24 - 12/02/2013</p>
+          <div class="each-day-container" v-for="(object, i) in objects" :key="i">
+
+             <div>
+              <h3>{{ object.titulo }}</h3>
+              <p>{{ object.cnpj }}</p>
             </div>
-            <h3>R$ 54,90</h3>
-          </div>
-          <div class="each-day-container">
-            <div>
-              <h3>Almoço médico</h3>
-              <p>22:24 - 12/02/2013</p>
-            </div>
-            <h3>R$ 54,90</h3>
-          </div>
-          <div class="each-day-container">
-            <div>
-              <h3>Almoço médico</h3>
-              <p>22:24 - 12/02/2013</p>
-            </div>
-            <h3>R$ 54,90</h3>
+            <h3>{{ object.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }}</h3>
           </div>
         </div>
       </div>
 </template>
 
 <script>
+import moment from 'moment';
 
 export default {
   name: "CardDia",
   props: {
-    firstElement: false,
+    objects: {},
+    dia : '',
   },
-  methods: {
-    async getList() {
-      console.log(await service.list());
-    },
-  },
-  async mounted() {
-    await this.getList();
-  },
+  computed: {
+    getDay() {
+      const date = moment(this.dia, 'DD/MM/YYYY');
+
+      if (moment().toDate() == date) {
+        return 'Hoje';
+      }
+
+      const diasDaSemana = [ 'Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
+      return `${diasDaSemana[date.isoWeekday()]}, ${this.dia}`;
+    }
+  }
 };
 </script>
 
@@ -56,21 +46,21 @@ export default {
 .section-container h1 {
   font-family: "WorkSans";
   font-weight: 800;
-  font-size: 35px;
+  font-size: 3px;
   text-align: left;
 }
 
 h2 {
   font-family: "WorkSans";
   font-weight: 800;
-  font-size: 30px;
+  font-size: 20px;
   text-align: left;
 }
 
 .each-day-container {
   display: flex;
   text-align: left;
-  font-size: 1.5rem;
+  font-size: 16px;
   flex: 1;
 }
 

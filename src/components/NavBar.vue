@@ -1,21 +1,21 @@
 <template>
   <div class="navbar-main-container">
     <div class="nav-bar-user">
-      <img src="src/assets/user.png" />
+      <img src="../assets/user.webp" />
       <p>Olá, Nathália</p>
     </div>
     <div class="nav-bar-items">
-        <div class="each-item" @click="this.$router.push({ name: 'Dashboard'})">
-          <img src="src/assets/despesas-icon.svg" />
-          <p>Despesas</p>
-        </div>
-        <div class="each-item" @click="console.log('load')">
-          <img class="nav-bar-image-item" src="src/assets/sign-out.svg" />
-          <p class="nav-bar-image-text">Sair</p>
-        </div>
+      <div class="each-item" @click="this.$router.push({ name: 'Dashboard' })">
+        <img class="nav-bar-image-item" src="../assets/despesas-icon.svg" />
+        <p class="nav-bar-image-text">Despesas</p>
+      </div>
+      <div class="each-item" @click="console.log('load')">
+        <img class="nav-bar-image-item" src="../assets/sign-out.svg" />
+        <p class="nav-bar-image-text">Sair</p>
+      </div>
     </div>
     <div class="nav-bar-logo">
-      <img src="/src/assets/logo.png" />
+      <img src="../assets/logo.png" />
     </div>
   </div>
 </template>
@@ -47,7 +47,7 @@
 }
 
 .nav-bar-user p {
-  font-size: 20px;
+  font-size: 13px;
   font-weight: 600;
 }
 a {
@@ -71,7 +71,7 @@ a {
   justify-items: center;
   background-color: #2c114e;
   width: 100%;
-  max-height: 9vh;
+  height: 9vh;
   cursor: pointer;
 }
 
@@ -81,10 +81,10 @@ a {
 }
 
 .each-item p {
-  flex: 1;
   text-align: left;
   font-size: 1.1rem;
   font-weight: 600;
+  flex: 1;
 }
 
 .nav-bar-logo img {

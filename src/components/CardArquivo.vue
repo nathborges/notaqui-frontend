@@ -1,27 +1,105 @@
 <template>
-  <div class="flex p-4 flex-row file-card-container rounded-lg w-full h-36 gap-4">
+  <div class="flex flex-row shadow file-card-container rounded-lg w-full gap-6">
     <div class="flex align-center justify-center">
-      <img class="rounded-lg" :src="returnUrl(file)" />
+      <a :href="returnUrl" class="align-center" target="_blank">
+        <img class="rounded-lg align-center" :src="returnUrl" />
+      </a>
     </div>
-    <div class="flex-1 flex flex-col file-card-container w-full">
-      <p><strong> Nome da despesa:</strong> Teste 1</p>
-      <p><strong>CNPJ:</strong> Teste 1</p>
-      <p><strong>Nome do arquivo: </strong> {{ file.name }}</p>
-      <p><strong>Data da despesa: </strong> 11/09/2000 </p>
+    <div class="flex flex-col justify-evenly gap-3 flex-1">
+      <div class="flex flex-col gap-2">
+        <p class="title">Documento</p>
+        <div class="flex gap-2">
+          <item
+            class="flex-1"
+            title="Título"
+            type="text"
+            :value="file.title"
+            :isEditable="edit"
+            @updateValue="refreshTitulo"
+          />
+          <item
+            class="flex-1"
+            title="Valor"
+            type="number"
+            :value="file.value"
+            step="0.01"
+            :isEditable="edit"
+            @updateValue="refreshValor"
+          />
+          <item
+            class="flex-1"
+            title="Data"
+            type="date"
+            :value="file.data"
+            :isEditable="edit"
+            @updateValue="refreshData"
+          />
+          <img
+            v-show="!edit"
+            class="edit-icon"
+            @click="changeEdit"
+            src="../assets/pencil-icon.svg"
+          />
+          <img
+            v-show="edit"
+            class="edit-icon"
+            @click="updateFile"
+            src="../assets/check-icon.svg"
+          />
+        </div>
+      </div>
+      <span class="vr"></span>
+      <div class="flex flex-col gap-2">
+        <p class="title">Estabelecimento</p>
+        <div class="flex flex-col">
+          <div class="flex gap-2">
+            <item class="flex-1" title="Nome" :value="file.nomeEmpresa" />
+            <item class="flex-1" title="CNPJ" :value="file.cnpj" />
+          </div>
+          <item class="flex-1" title="Atividade" :value="file.tipoEmpresa" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import moment from 'moment'; 
+import Item from "./Item.vue";
+import moment from "moment";
+
 export default {
+  components: { Item },
   name: "CardArquivo",
   props: {
     file: null,
   },
+  data() {
+    return {
+      edit: false,
+      value: "",
+      title: "",
+    };
+  },
+  computed: {
+    returnUrl() {
+      return URL.createObjectURL(this.file.raw);
+    },
+  },
   methods: {
-    returnUrl(file) {
-      return URL.createObjectURL(file);
+    changeEdit() {
+      this.edit = !this.edit;
+    },
+    updateFile() {
+      this.edit = !this.edit;
+    },
+    refreshValor(newValue) {
+      this.file.value = newValue;
+    },
+    refreshTitulo(newValue) {
+      this.file.title = newValue;
+    },
+    refreshData(newValue) {
+      this.file.data = moment(newValue).format("DD/MM/YYYY");
     },
   },
 };
@@ -29,15 +107,53 @@ export default {
 
 <style scoped>
 .file-card-container {
-  background-color: #d9d9d9;
-  align-items: flex-start;
+  background-color: #d9d7eaba;
+  padding: 2%;
+  justify-content: space-around;
+}
+.file-card-container:hover {
+  background-color: #bebae3ba;
+}
+
+a {
+  align-self: center;
 }
 
 img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    align-self: center;
-    justify-self: center;
+  object-fit: cover;
+  align-self: center;
+  justify-self: center;
+  max-height: 150px;
+  height: 150px;
+  width: 150px;
+}
+
+.edit-icon {
+  height: 2.5vh;
+  width: auto;
+  align-self: center;
+  cursor: pointer;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: start;
+  color: #2c2c2c;
+}
+
+.vr {
+  height: 1px;
+  border-bottom: 2px solid #b5b5b5;
+  border-radius: 10px;
+}
+
+a {
+  height: fit-content;
+}
+
+p {
+  font-size: 16px;
 }
 </style>

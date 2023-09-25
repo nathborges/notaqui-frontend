@@ -19,12 +19,6 @@ const routes = [
     name: "NovaDespesa",
     component: NovaDespesa,
   },
-  {
-		enabled: true,
-		path: '',
-		name: 'notFound',
-		redirect: '/',
-	},
 ];
 
 const router = createRouter({
