@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: "WorkSans";
-    src: url("src/assets/fonts/teste.ttf") format("truetype");
+    src: url("./assets/fonts/worksans.ttf") format("truetype");
 }
 
 body {
