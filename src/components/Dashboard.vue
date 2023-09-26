@@ -1,6 +1,6 @@
 <template>
   <section class="section-container">
-    <div class="title-container">
+    <div>
       <h1>Todas as despesas</h1>
     </div>
     <div
@@ -171,24 +171,18 @@ export default {
 .section-container h1 {
   font-family: "WorkSans";
   font-weight: 800;
-  font-size: 25px;
   text-align: left;
 }
 
 h2 {
   font-family: "WorkSans";
   font-weight: 800;
-  font-size: 30px;
   text-align: left;
 }
 
 .button {
   cursor: pointer;
-}
-
-.button p {
   font-family: "WorkSans";
   font-weight: 500;
-  font-size: 14px;
 }
 </style>

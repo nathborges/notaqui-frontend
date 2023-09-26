@@ -60,12 +60,25 @@ onMounted(() => {
 </template>
 
 <script>
+import { store } from "../store/index";
+
 export default {
   name: "Login",
   data() {
     return {
       email: "",
       password: "",
+    };
+  },
+  setup() {
+    const myStore = store;
+
+    function login() {
+      console.log(myStore);
+    }
+
+    return {
+      login,
     };
   },
   computed: {
@@ -90,8 +103,8 @@ export default {
       this.file.data = moment(newValue).format("DD/MM/YYYY");
     },
     actionLogin() {
-      console.log(this.email, this.password);
-      if (this.email == "sanofi@teste.com" && this.password == "sanofi") {
+      console.log(this.$store);
+      if (this.email == "a" && this.password == "b") {
         this.$router.push("/dashboard");
       }
     },
@@ -112,7 +125,7 @@ export default {
 .main-container input {
   background-color: #e4e4e4;
   height: 59px;
-  width: 380px;
+  width: 30vw;
   color: black;
   text-align: center;
 }
@@ -127,7 +140,7 @@ export default {
 }
 
 .login-logo {
-  width: 50%;
+  width: 15vw;
 }
 
 .login-container {
@@ -162,7 +175,7 @@ export default {
   background-color: #190433;
   border-radius: 15px;
   height: 59px;
-  width: 380px;
+  width: 20vw;
   pointer-events: fill;
   filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.12));
   background: #1e0242;
@@ -194,6 +207,7 @@ h2 {
   font-weight: 600;
   font-size: 25px;
   color: white;
+  margin: 0 3vw 0 3vw;
 }
 
 input {
@@ -206,6 +220,37 @@ input {
 }
 
 .gif {
-  height: 45vh;
+  max-height: 45vh;
+  min-height: 10vh;
+}
+
+@media (max-width: 700px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .inputs-container {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    padding-right: 5vw;
+    padding-left: 5vw;
+
+  }
+
+  .login-button {
+    width: 50vw;
+  }
+
+  .main-container input{
+    width: 90vw;
+  }
+
+  .banner-container {
+    gap: 1vh;
+  }
+  .banner-container h2 {
+    gap: 1vh;
+    padding: 5vh;
+  }
 }
 </style>

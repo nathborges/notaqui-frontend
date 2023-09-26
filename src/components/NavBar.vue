@@ -47,7 +47,6 @@
 }
 
 .nav-bar-user p {
-  font-size: 14px;
   font-weight: 600;
 }
 a {
@@ -82,7 +81,6 @@ a {
 
 .each-item p {
   text-align: left;
-  font-size: 14px;
   font-weight: 600;
   flex: 1;
 }
@@ -92,4 +90,26 @@ a {
   flex: 0.5;
 }
 
+@media (max-width: 700px) {
+
+  .nav-bar-user {
+    padding: 2vh;
+  }
+
+  .nav-bar-user img {
+    display: none;
+
+  }
+  .nav-bar-logo {
+    display: none;
+  }
+
+  .each-item p {
+    display: none;
+  }
+
+  .nav-bar-items {
+    flex-direction: row;
+  }
+}
 </style>

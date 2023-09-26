@@ -61,4 +61,10 @@ main {
 .blur {
     filter: blur(2px);
 }
+
+@media (max-width: 700px) {
+  main {
+    flex-direction: column;
+  }
+}
 </style>

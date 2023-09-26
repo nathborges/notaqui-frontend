@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-row shadow file-card-container rounded-lg w-full gap-6">
-    <div class="flex align-center justify-center">
+    <div class="flex flex-wrap align-center justify-center">
       <a :href="returnUrl" class="align-center" target="_blank">
         <img class="rounded-lg align-center" :src="returnUrl" />
       </a>
     </div>
-    <div class="flex flex-col justify-evenly gap-3 flex-1">
-      <div class="flex flex-col gap-2">
+    <div class="flex flex-wrap flex-col justify-evenly gap-3 flex-1">
+      <div class="flex flex-wrap flex-col gap-2">
         <p class="title">Documento</p>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           <item
             class="flex-1"
             title="Título"
@@ -108,7 +108,7 @@ export default {
 <style scoped>
 .file-card-container {
   background-color: #d9d7eaba;
-  padding: 2%;
+  padding: 2vw 2vh;
   justify-content: space-around;
 }
 .file-card-container:hover {
@@ -138,7 +138,6 @@ img {
 .title {
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
   text-align: start;
   color: #2c2c2c;
 }
@@ -151,9 +150,5 @@ img {
 
 a {
   height: fit-content;
-}
-
-p {
-  font-size: 16px;
 }
 </style>

@@ -1,9 +1,8 @@
 <template>
-    <router-view />
+  <router-view />
 </template>
 
 <style>
-
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -12,8 +11,8 @@
 }
 
 @font-face {
-    font-family: "WorkSans";
-    src: url("./assets/fonts/worksans.ttf") format("truetype");
+  font-family: "WorkSans";
+  src: url("./assets/fonts/worksans.ttf") format("truetype");
 }
 
 body {
@@ -24,19 +23,19 @@ body {
 #app {
   margin: 0 !important;
   padding: 0 !important;
-
 }
 
 p {
   font-family: WorkSans;
+  font-size: clamp( 1rem, 0.5vw, 0.3vh);
 }
 
 h1 {
   font-family: WorkSans;
+  font-size: clamp( 2rem, 2vw, 2vh);
 }
 
 h2 {
   font-family: WorkSans;
 }
 </style>
-

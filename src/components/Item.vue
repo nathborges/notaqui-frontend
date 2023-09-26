@@ -71,7 +71,6 @@ export default {
 
 .title {
   font-weight: 400;
-  font-size: 13px;
   color: #252525;
 }
 
@@ -84,7 +83,6 @@ export default {
 
 .value {
   font-weight: 600;
-  font-size: 13px;
   text-align: left;
 }
 
