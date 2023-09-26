@@ -60,8 +60,6 @@ onMounted(() => {
 </template>
 
 <script>
-import { store } from "../store/index";
-
 export default {
   name: "Login",
   data() {
@@ -103,11 +101,17 @@ export default {
       this.file.data = moment(newValue).format("DD/MM/YYYY");
     },
     actionLogin() {
-      console.log(this.$store);
       if (this.email == "a" && this.password == "b") {
+        localStorage.setItem("userAuthorized", true);
         this.$router.push("/dashboard");
       }
     },
+  },
+  mounted() {
+    const userIsLogged = localStorage.getItem("userAuthorized");
+    if (userIsLogged) {
+      return this.$router.push("/dashboard");
+    }
   },
 };
 </script>
@@ -234,14 +238,13 @@ input {
     padding-bottom: 5vh;
     padding-right: 5vw;
     padding-left: 5vw;
-
   }
 
   .login-button {
     width: 50vw;
   }
 
-  .main-container input{
+  .main-container input {
     width: 90vw;
   }
 
@@ -251,10 +254,10 @@ input {
   }
   .banner-container h2 {
     gap: 1vh;
-    padding: 5vh; 
+    padding: 5vh;
   }
   .login-logo {
     width: 50vw;
-}
+  }
 }
 </style>

@@ -9,4 +9,10 @@ const mutations = {
         state.isAuthorized = true;
     },
 };
-export const store = createStore({ state, mutations });
+
+const getters = {
+    getIfUserIsAuthorized() {
+        return state.isAuthorized;
+    },
+};
+export const store = createStore({ state, mutations, getters});

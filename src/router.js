@@ -5,9 +5,9 @@ import NovaDespesa from "/src/views/NovaDespesa.vue";
 
 const routes = [
   {
-      path: "/",
-      name: "Login",
-      component: Login,
+    path: "/",
+    name: "Login",
+    component: Login,
   },
   {
     path: "/dashboard",
@@ -19,6 +19,7 @@ const routes = [
     name: "NovaDespesa",
     component: NovaDespesa,
   },
+  { path: "/:pathMatch(.*)*", component: Home },
 ];
 
 const router = createRouter({

@@ -2,6 +2,18 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  name: "App",
+  created() {
+    const userIsLogged = localStorage.getItem('userAuthorized')
+    if (!userIsLogged) {
+      return this.$router.push('/');
+    }
+  },
+};
+</script>
+
 <style>
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
