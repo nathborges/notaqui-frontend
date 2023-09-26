@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { LottieAnimation } from "lottie-web-vue";
-import login from "../assets/login-gif.json";
+import login from "../assets/login.json";
 
 let anim = ref();
 
@@ -52,7 +52,7 @@ onMounted(() => {
         :animation-data="login"
         :loop="true"
         :auto-play="true"
-        :speed="0.3"
+        :speed="0.1"
         class="gif"
       />
     </div>
