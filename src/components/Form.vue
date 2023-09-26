@@ -158,7 +158,7 @@ export default {
 .section-container h1 {
   font-family: "WorkSans";
   font-weight: 800;
-  font-size: 27px;
+  font-size: 25px;
   text-align: left;
 }
 
