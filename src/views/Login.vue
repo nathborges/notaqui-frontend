@@ -1,3 +1,18 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import { LottieAnimation } from "lottie-web-vue";
+import login from "../assets/login-gif.json";
+
+let anim = ref();
+
+onMounted(() => {
+  setTimeout(() => {
+    console.log(anim.value.goToAndPlay(150, true));
+    anim.value;
+  }, 10000);
+});
+</script>
+
 <template>
   <div class="flex main-container flex-row">
     <div
@@ -32,13 +47,19 @@
         o cadastro de despesas.
       </h2>
 
-      <img src="../assets/banner.svg" />
+      <LottieAnimation
+        ref="anim"
+        :animation-data="login"
+        :loop="true"
+        :auto-play="true"
+        :speed="0.3"
+        class="gif"
+      />
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Login",
   data() {
@@ -66,16 +87,14 @@ export default {
       this.file.title = newValue;
     },
     refreshData(newValue) {
-      this.file.data = moment(newValue).format('DD/MM/YYYY');
+      this.file.data = moment(newValue).format("DD/MM/YYYY");
     },
-    actionLogin(){
+    actionLogin() {
       console.log(this.email, this.password);
-      if (this.email == 'sanofi@teste.com' && this.password == 'sanofi' ) {
-        this.$router.push(
-           '/dashboard'
-        );
+      if (this.email == "sanofi@teste.com" && this.password == "sanofi") {
+        this.$router.push("/dashboard");
       }
-    }
+    },
   },
 };
 </script>
@@ -108,7 +127,7 @@ export default {
 }
 
 .login-logo {
-  width: 60%;
+  width: 50%;
 }
 
 .login-container {
@@ -124,8 +143,9 @@ export default {
   align-items: center;
   justify-items: center;
   display: flex;
-  justify-content: space-around;
   text-align: left;
+  justify-content: center;
+  gap: 5vh;
 }
 
 .login-input-container {
@@ -172,7 +192,7 @@ p {
 h2 {
   font-family: WorkSans;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 25px;
   color: white;
 }
 
@@ -183,5 +203,9 @@ input {
   background: rgba(228, 228, 228, 0.58);
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.12);
   border-radius: 9px;
+}
+
+.gif {
+  height: 45vh;
 }
 </style>
