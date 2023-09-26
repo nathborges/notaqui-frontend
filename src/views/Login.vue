@@ -253,5 +253,8 @@ input {
     gap: 1vh;
     padding: 5vh; 
   }
+  .login-logo {
+    width: 50vw;
+}
 }
 </style>
