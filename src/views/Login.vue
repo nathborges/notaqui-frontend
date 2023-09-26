@@ -247,10 +247,11 @@ input {
 
   .banner-container {
     gap: 1vh;
+    padding-bottom: 2vh;
   }
   .banner-container h2 {
     gap: 1vh;
-    padding: 5vh;
+    padding: 5vh; 
   }
 }
 </style>
