@@ -182,6 +182,10 @@ h2 {
   text-align: left;
 }
 
+.button {
+  cursor: pointer;
+}
+
 .button p {
   font-family: "WorkSans";
   font-weight: 500;
