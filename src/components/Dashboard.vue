@@ -144,6 +144,7 @@ export default {
   margin-top: 1%;
   margin-bottom: 1%;
   color: black;
+  overflow-x: hidden;
   overflow-y: scroll;
   padding: 4%;
   display: flex;

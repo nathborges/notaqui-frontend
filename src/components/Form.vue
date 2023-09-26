@@ -153,13 +153,12 @@ export default {
   margin-top: 1%;
   margin-bottom: 1%;
   color: black;
-  overflow: hidden;
   padding: 4%;
   display: flex;
   flex-direction: column;
   gap: 2vh;
   scrollbar-color: light;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .content-container {
