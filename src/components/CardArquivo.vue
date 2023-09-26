@@ -51,8 +51,8 @@
       <span class="vr"></span>
       <div class="flex flex-col gap-2">
         <p class="title">Estabelecimento</p>
-        <div class="flex flex-col">
-          <div class="flex gap-2">
+        <div class="flex flex-col estabelecimento">
+          <div class="flex gap-2 estabelecimento">
             <item class="flex-1" title="Nome" :value="file.nomeEmpresa" />
             <item class="flex-1" title="CNPJ" :value="file.cnpj" />
           </div>
@@ -150,5 +150,12 @@ img {
 
 a {
   height: fit-content;
+}
+
+
+@media (max-width: 600px) {
+  .estabelecimento {
+   flex-direction: column;
+  }
 }
 </style>

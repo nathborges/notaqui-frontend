@@ -1,15 +1,16 @@
 <script setup>
- 
-  import NavBar from "../components/NavBar.vue";
-  import Dashboard from "../components/Dashboard.vue";
+import NavBar from "../components/NavBar.vue";
+import Dashboard from "../components/Dashboard.vue";
 
-  components: { NavBar, Dashboard };
+components: {
+  NavBar, Dashboard;
+}
 </script>
 
 <template>
   <main>
-   <nav-bar class="nav-bar-container" />
-   <dashboard />
+    <nav-bar class="nav-bar-container" />
+    <dashboard />
   </main>
 </template>
 
@@ -30,10 +31,16 @@ main {
 
 .section-container {
   flex: 3;
-  background: #F9F9F9;
+  background: #f9f9f9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px 0 0 10px;
   margin-top: 1%;
   margin-bottom: 1%;
+}
+
+@media (max-width: 700px) {
+  main {
+    flex-direction: column;
+  }
 }
 </style>

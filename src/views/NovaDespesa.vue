@@ -8,12 +8,11 @@ components: {
 </script>
 
 <template>
-  <main >
+  <main>
     <nav-bar class="nav-bar-container" />
     <Form />
   </main>
 </template>
-
 
 <script>
 export default {
@@ -51,20 +50,20 @@ main {
 }
 
 .loading {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .blur {
-    filter: blur(2px);
+  filter: blur(2px);
 }
 
 @media (max-width: 700px) {
   main {
     flex-direction: column;
-  }
+      }
 }
 </style>

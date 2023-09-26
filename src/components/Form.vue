@@ -221,9 +221,11 @@ label {
 }
 
 @media (max-width: 700px) {
-
   .section-container {
     width: 100vw;
+    margin-bottom: 0 !important;
+    border-radius: 10px 10px 0 0 !important;
+    text-align: center;
   }
 }
 </style>
