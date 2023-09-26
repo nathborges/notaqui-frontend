@@ -7,11 +7,11 @@
     <div class="nav-bar-items">
       <div class="each-item" @click="this.$router.push({ name: 'Dashboard' })">
         <img class="nav-bar-image-item" src="../assets/despesas-icon.svg" />
-        <p class="nav-bar-image-text">Despesas</p>
+        <p>Despesas</p>
       </div>
       <div class="each-item" @click="console.log('load')">
         <img class="nav-bar-image-item" src="../assets/sign-out.svg" />
-        <p class="nav-bar-image-text">Sair</p>
+        <p>Sair</p>
       </div>
     </div>
     <div class="nav-bar-logo">
@@ -82,7 +82,7 @@ a {
 
 .each-item p {
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 14px;
   font-weight: 600;
   flex: 1;
 }
@@ -91,4 +91,5 @@ a {
   height: 60%;
   flex: 0.5;
 }
+
 </style>
