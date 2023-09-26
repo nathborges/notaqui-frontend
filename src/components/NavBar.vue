@@ -47,7 +47,7 @@
 }
 
 .nav-bar-user p {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
 }
 a {

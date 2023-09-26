@@ -5,7 +5,7 @@
     </div>
     <div class="content-container">
       <div v-if="filesAttached.length == 0" :style="loadingIndicator ? 'filter: blur(2px)' : ''" class="flex-1 flex justify-center items-center">
-        <p>Ainda não existem notas ou recibos associados a essa despesa.</p>
+        <p>Ainda não existem notas fiscais ou cupons fiscais associados a essa despesa.</p>
       </div>
       <div
         v-else
@@ -40,7 +40,7 @@
               <p class="mb-2 text-gray:200">
                 Clique para adicionar ou arraste uma
                 <span class="font-semibold">nota fiscal</span> ou um
-                <span class="font-semibold">recibo fiscal</span>
+                <span class="font-semibold">cupom fiscal</span>
               </p>
               <p class="sm text-gray:200">PNG, JPG ou JPEG</p>
             </div>

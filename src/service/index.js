@@ -1,13 +1,13 @@
 import moment from 'moment';
 import axios from '../axios/axios';
 import getBase64 from '../utils/getBase64';
+import getTypeOfFile from '../utils/getTypeOfFile';
 
 let number = 1;
 
 export default {
   async list() {
     const data = await axios.get('/compras/buscar');
-    console.log(data);
     return data;
   },
   async getFileInformation(file) {
@@ -34,11 +34,13 @@ export default {
       data: moment().format('DD/MM/YYYY'),
     };
 
-    number = number++;
+    number = number + 1;
     return object;
   },
   async sendFile(file) {
     const base64 = await getBase64(file.raw);
+    const type = getTypeOfFile(file.raw);
+
     const body = {
       infoPj: {
         cnpj: file.cnpj,
@@ -50,18 +52,15 @@ export default {
       matricula: 'rm88426',
       anexo: {
         conteudo: base64,
-        extensao: 'jpeg',
+        extensao: type,
       },
       titulo: file.title,
       dataRegistro: file.data
     };
-
-    const rawData = await axios.post('/compras/cadastrar', body, {
+    return await axios.post('/compras/cadastrar', body, {
       headers: {
         'Content-Type': 'application/json',
       },
     });
-
-	console.log(rawData);
   },
 };
