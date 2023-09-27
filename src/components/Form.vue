@@ -1,6 +1,6 @@
 <template>
   <section class="section-container">
-    <div class="flex-1 title-container">
+    <div class="title-container">
       <h1>Criar nova despesa</h1>
     </div>
     <div class="flex-1 content-container">
@@ -53,13 +53,13 @@
                   <span class="font-semibold">nota fiscal</span> ou um
                   <span class="font-semibold">cupom fiscal</span>
                 </p>
-                <p class="sm text-gray:200">PNG, JPG ou JPEG</p>
+                <p class="sm text-gray:200">PDF, PNG, JPG ou JPEG</p>
               </div>
               <input
                 id="dropzone-file"
                 type="file"
                 class="hidden"
-                accept="image/png, image/jpeg"
+                accept="image/png, image/jpeg,.pdf"
                 @change="previewFiles"
                 multiple
               />
@@ -126,8 +126,12 @@ export default {
     },
     async getData(file) {
       try {
-        const fileInformation = await service.getFileInformation(file);
-        console.log(fileInformation)
+        let fileInformation;
+        if (file.type == "application/pdf") {
+          fileInformation = await service.getFileInformationPdf(file);
+        } else {
+          fileInformation = await service.getFileInformation(file);
+        }
         return { ...fileInformation, name: file.name, raw: file };
       } catch (error) {
         return null;
@@ -159,7 +163,7 @@ export default {
   flex-direction: column;
   gap: 2vh;
   scrollbar-color: light;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .content-container {
@@ -191,9 +195,7 @@ export default {
 }
 
 .card-container {
-  min-height: 55vh;
-  height: 55vh;
-  max-height: 55vh;
+  height: 45vh;
   scrollbar-color: light;
   scrollbar-width: thin;
 }

@@ -64,8 +64,8 @@ export default {
   name: "Login",
   data() {
     return {
-      email: "",
-      password: "",
+      email: "sanofi@teste.com",
+      password: "sanofi",
     };
   },
   computed: {
@@ -93,6 +93,8 @@ export default {
       if (this.email == "sanofi@teste.com" && this.password == "sanofi") {
         localStorage.setItem("userAuthorized", "true");
         this.$router.push("/dashboard");
+      } else {
+
       }
     },
   },
@@ -242,5 +244,7 @@ input {
   .login-logo {
     width: 50vw;
   }
+
+
 }
 </style>

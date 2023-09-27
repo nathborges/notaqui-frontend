@@ -16,6 +16,8 @@
     "lottie-web": "^5.12.2",
     "lottie-web-vue": "^2.0.7",
     "moment": "^2.29.4",
+    "pdf-poppler": "^0.2.1",
+    "pdf2image": "^1.2.3",
     "pinia": "^2.1.6",
     "serve": "^14.2.1",
     "vue": "^3.3.4",

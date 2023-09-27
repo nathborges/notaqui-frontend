@@ -1,55 +1,78 @@
 <template>
-    <div class="day-container">
-        <div class="flex flex-row justify-between">
-          <h2> {{ getDay }}</h2>
-        </div>
-        <div class="days">
-          <div class="each-day-container" v-for="(object, i) in objects" :key="i">
-
-             <div>
-              <h3>{{ object.titulo }}</h3>
-              <p>{{ object.cnpj }}</p>
-            </div>
-            <h3>{{ object.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }}</h3>
+  <div class="day-container">
+    <div class="flex flex-row justify-between">
+      <h2>{{ getDay }}</h2>
+    </div>
+    <div class="days">
+      <div class="each-day-container" v-for="(object, i) in objects" :key="i">
+        <div>
+          <h3>{{ object.titulo }}</h3>
+          <div>
+            <p>
+              <strong>CNPJ:</strong> {{ object.infoPj.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5") }}
+            </p>
+            <p>
+              <strong>Razão Social:</strong> {{ object.infoPj.razaoSocial }}
+            </p>
           </div>
         </div>
+        <h3>
+          {{
+            object.valor.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })
+          }}
+        </h3>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import moment from 'moment';
+import moment from "moment";
 
 export default {
   name: "CardDia",
   props: {
     objects: {},
-    dia : '',
+    dia: "",
+  },
+  data() {
+    return {
+      open: false,
+    };
   },
   computed: {
     getDay() {
-      const date = moment(this.dia, 'DD/MM/YYYY');
+      const date = moment(this.dia, "DD/MM/YYYY");
 
       if (moment().toDate() == date) {
-        return 'Hoje';
+        return "Hoje";
       }
 
-      const diasDaSemana = [ 'Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
+      const diasDaSemana = [
+        "Domingo",
+        "Segunda-feira",
+        "Terça-feira",
+        "Quarta-feira",
+        "Quinta-feira",
+        "Sexta-feira",
+        "Sábado",
+      ];
       return `${diasDaSemana[date.isoWeekday()]}, ${this.dia}`;
-    }
-  }
+    },
+  },
 };
 </script>
 
-
 <style scoped>
-
 .section-container h1 {
   font-family: "WorkSans";
   font-weight: 800;
   font-size: 3px;
   text-align: left;
 }
-
 h2 {
   font-family: "WorkSans";
   font-weight: 800;
@@ -62,6 +85,9 @@ h2 {
   text-align: left;
   font-size: 16px;
   flex: 1;
+  background-color: #d9d7eaba;
+  border-radius: 10px;
+  padding: 1vh 1.5vh;
 }
 
 .each-day-container div {
@@ -86,12 +112,12 @@ h2 {
 }
 
 .button-add-new img {
-    height: 3vh;
+  height: 3vh;
 }
 
 .days {
   display: flex;
   flex-direction: column;
-  gap: 100%;
+  gap: 2vh;
 }
 </style>

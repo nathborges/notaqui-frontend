@@ -38,6 +38,34 @@ export default {
     number = number + 1;
     return informacoesNota;
   },
+  async getFileInformationPdf(file) {
+    const base64 = await getBase64(file);
+    const body = { conteudo: `${base64}` };
+    const rawData = await axios.post("/ocr/identificarPdf", body, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (rawData.data.infoPj.cnpj == "Nao encontrado") {
+      throw new Error();
+    }
+
+    const data = rawData.data;
+
+    const informacoesNota = {
+      cnpj: data.infoPj.cnpj,
+      razaoSocial: data.infoPj.razaoSocial,
+      naturezaJuridica: data.infoPj.naturezaJuridica,
+      tipoEmpresa: data.infoPj.tipoEmpresa,
+      valor: data.valor.toFixed(2),
+      titulo: `Nota ${number}`,
+      data: moment().format("DD/MM/YYYY"),
+    };
+
+    number = number + 1;
+    return informacoesNota;
+  },
   async sendFile(file) {
     const base64 = await getBase64(file.raw);
     const type = getTypeOfFile(file.raw);

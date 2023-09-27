@@ -13,7 +13,9 @@
       </div>
     </div>
     <div v-if="!isLoading" class="content-container">
-      <Bar height="100" :data="getChartData" :options="options" />
+      <div class="altura">
+        <Bar height="250" :data="getChartData" :options="options" />
+      </div>
       <CardDia
         v-for="(despesa, i) in despesas"
         :objects="despesa"
@@ -80,6 +82,7 @@ export default {
           },
         },
         responsive: true,
+        maintainAspectRatio: false,
         backgroundColor: ["#d9d7eaba"],
         plugins: {
           legend: {
@@ -132,7 +135,6 @@ export default {
   async mounted() {
     await this.getList();
   },
-  
 };
 </script>
 
@@ -155,7 +157,7 @@ export default {
 }
 
 .content-container {
-  gap: 10px;
+  gap: 3vh;
   display: flex;
   flex-direction: column;
 }
@@ -186,6 +188,10 @@ h2 {
   cursor: pointer;
   font-family: "WorkSans";
   font-weight: 500;
+}
+
+.altura {
+  width: 80vw !important;
 }
 
 @media (max-width: 700px) {

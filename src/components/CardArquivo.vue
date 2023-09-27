@@ -82,6 +82,9 @@ export default {
   },
   computed: {
     returnUrl() {
+      if (this.file.raw.type == "application/pdf") {
+        return "https://cdn-icons-png.flaticon.com/512/4208/4208479.png";
+      }
       return URL.createObjectURL(this.file.raw);
     },
   },
@@ -152,10 +155,9 @@ a {
   height: fit-content;
 }
 
-
 @media (max-width: 600px) {
   .estabelecimento {
-   flex-direction: column;
+    flex-direction: column;
   }
 }
 </style>
