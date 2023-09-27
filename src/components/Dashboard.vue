@@ -187,7 +187,7 @@ h2 {
 }
 
 .graph {
-  width: 85vw !important;
+  width: 100%;
 }
 
 @media (max-width: 700px) {
