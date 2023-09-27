@@ -9,7 +9,13 @@
           <h3>{{ object.titulo }}</h3>
           <div>
             <p>
-              <strong>CNPJ:</strong> {{ object.infoPj.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5") }}
+              <strong>CNPJ:</strong>
+              {{
+                object.infoPj.cnpj.replace(
+                  /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+                  "$1.$2.$3/$4-$5"
+                )
+              }}
             </p>
             <p>
               <strong>Razão Social:</strong> {{ object.infoPj.razaoSocial }}
@@ -52,15 +58,16 @@ export default {
       }
 
       const diasDaSemana = [
-        "Domingo",
         "Segunda-feira",
         "Terça-feira",
         "Quarta-feira",
         "Quinta-feira",
         "Sexta-feira",
         "Sábado",
+        "Domingo",
       ];
-      return `${diasDaSemana[date.isoWeekday()]}, ${this.dia}`;
+      const dayOfWeek = date.isoWeekday() - 1;
+      return `${diasDaSemana[dayOfWeek]}, ${this.dia}`;
     },
   },
 };

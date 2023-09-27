@@ -93,8 +93,6 @@ export default {
       if (this.email == "sanofi@teste.com" && this.password == "sanofi") {
         localStorage.setItem("userAuthorized", "true");
         this.$router.push("/dashboard");
-      } else {
-
       }
     },
   },

@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-row shadow file-card-container rounded-lg w-full gap-6">
-    <div class="flex flex-wrap align-center justify-center">
+    <div class="flex align-center justify-center">
       <a :href="returnUrl" class="align-center" target="_blank">
         <img class="rounded-lg align-center" :src="returnUrl" />
       </a>
     </div>
-    <div class="flex flex-wrap flex-col justify-evenly gap-3 flex-1">
-      <div class="flex flex-wrap flex-col gap-2">
+    <div class="flex flex-col justify-evenly gap-3 flex-1">
+      <div class="flex flex-col gap-2">
         <p class="title">Documento</p>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex gap-2 documento">
           <item
             class="flex-1"
             title="Título"
@@ -158,6 +158,19 @@ a {
 @media (max-width: 600px) {
   .estabelecimento {
     flex-direction: column;
+  }
+
+  .documento {
+    flex-direction: column;
+  }
+
+  .file-card-container {
+    flex-direction: column;
+  }
+
+  .edit-icon {
+    height: 5vh;
+    align-self: flex-end;
   }
 }
 </style>
