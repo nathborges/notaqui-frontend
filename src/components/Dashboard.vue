@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-if="!isLoading" class="content-container">
-      <div class="altura">
+      <div class="graph">
         <Bar height="250" :data="getChartData" :options="options" />
       </div>
       <CardDia
@@ -162,10 +162,6 @@ export default {
   flex-direction: column;
 }
 
-.graph {
-  height: 10px;
-}
-
 .loading {
   height: 100%;
   align-items: center;
@@ -190,8 +186,8 @@ h2 {
   font-weight: 500;
 }
 
-.altura {
-  width: 80vw !important;
+.graph {
+  width: 85vw !important;
 }
 
 @media (max-width: 700px) {

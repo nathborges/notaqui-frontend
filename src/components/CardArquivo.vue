@@ -96,10 +96,10 @@ export default {
       this.edit = !this.edit;
     },
     refreshValor(newValue) {
-      this.file.value = newValue;
+      this.file.valor = newValue;
     },
     refreshTitulo(newValue) {
-      this.file.title = newValue;
+      this.file.titulo = newValue;
     },
     refreshData(newValue) {
       this.file.data = moment(newValue).format("DD/MM/YYYY");

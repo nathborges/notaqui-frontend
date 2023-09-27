@@ -2,7 +2,7 @@
   <div class="navbar-main-container">
     <div class="nav-bar-user">
       <img src="../assets/user.jpg" />
-      <p>Olá, Bárbara Moreira</p>
+      <p>Olá, Sanofi</p>
     </div>
     <div class="nav-bar-items">
       <div class="each-item" @click="this.$router.push({ name: 'Dashboard' })">

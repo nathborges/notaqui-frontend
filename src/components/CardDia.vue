@@ -99,7 +99,6 @@ h2 {
 }
 
 .each-day-container h3 {
-  flex: 1;
   font-weight: 700;
 }
 

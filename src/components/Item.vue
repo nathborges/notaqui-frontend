@@ -37,7 +37,7 @@ export default {
   name: "Item",
   props: {
     title: "",
-    value: "18/02/2000",
+    value: "",
     isEditable: false,
     type: "text",
   },
