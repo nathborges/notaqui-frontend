@@ -53,8 +53,8 @@ export default {
     getDay() {
       const date = moment(this.dia, "DD/MM/YYYY");
 
-      if (moment().toDate() == date) {
-        return "Hoje";
+      if (moment().format('DD/MM/YYYY') == this.dia) {
+        return `Hoje, ${this.dia}`;
       }
 
       const diasDaSemana = [
