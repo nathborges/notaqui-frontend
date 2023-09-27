@@ -19,7 +19,7 @@ const routes = [
     name: "NovaDespesa",
     component: NovaDespesa,
   },
-  { path: "/:pathMatch(.*)*", component: Home },
+{ path: "/:pathMatch(.*)*", component: Home },
 ];
 
 const router = createRouter({

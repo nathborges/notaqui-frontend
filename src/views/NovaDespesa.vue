@@ -22,6 +22,12 @@ export default {
       loadingIndicator: true,
     };
   },
+  mounted() {
+    const userIsLogged = localStorage.getItem("userAuthorized");
+    if (userIsLogged == "false") {
+      window.location = "/";
+    }
+  },
 };
 </script>
 
@@ -64,6 +70,6 @@ main {
 @media (max-width: 700px) {
   main {
     flex-direction: column;
-      }
+  }
 }
 </style>

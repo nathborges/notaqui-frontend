@@ -101,17 +101,11 @@ export default {
       this.file.data = moment(newValue).format("DD/MM/YYYY");
     },
     actionLogin() {
-      if (this.email == "a" && this.password == "b") {
-        localStorage.setItem("userAuthorized", true);
+      if (this.email == "sanofi@teste.com" && this.password == "sanofi") {
+        localStorage.setItem("userAuthorized", "true");
         this.$router.push("/dashboard");
       }
     },
-  },
-  mounted() {
-    const userIsLogged = localStorage.getItem("userAuthorized");
-    if (userIsLogged) {
-      return this.$router.push("/dashboard");
-    }
   },
 };
 </script>

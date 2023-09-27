@@ -9,7 +9,7 @@
         <img class="nav-bar-image-item" src="../assets/despesas-icon.svg" />
         <p>Despesas</p>
       </div>
-      <div class="each-item" @click="console.log('load')">
+      <div class="each-item" @click="logout">
         <img class="nav-bar-image-item" src="../assets/sign-out.svg" />
         <p>Sair</p>
       </div>
@@ -19,6 +19,16 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    logout() {
+      localStorage.setItem('userAuthorized', false);
+      window.location = '/';
+    },
+  },
+};
+</script>
 
 <style scoped>
 .navbar-main-container {
@@ -91,14 +101,12 @@ a {
 }
 
 @media (max-width: 700px) {
-
   .nav-bar-user {
     padding: 2vh;
   }
 
   .nav-bar-user img {
     display: none;
-
   }
   .nav-bar-logo {
     display: none;

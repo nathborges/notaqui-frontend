@@ -14,6 +14,18 @@ components: {
   </main>
 </template>
 
+<script>
+export default {
+  name: "Home",
+  mounted() {
+    const userIsLogged = localStorage.getItem("userAuthorized");
+    if (userIsLogged == "false") {
+      window.location = "/";
+    }
+  },
+};
+</script>
+
 <style scoped>
 header {
   line-height: 1.5;

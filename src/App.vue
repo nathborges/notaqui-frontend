@@ -5,12 +5,6 @@
 <script>
 export default {
   name: "App",
-  created() {
-    const userIsLogged = localStorage.getItem('userAuthorized')
-    if (!userIsLogged) {
-      return this.$router.push('/');
-    }
-  },
 };
 </script>
 

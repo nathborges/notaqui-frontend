@@ -132,6 +132,7 @@ export default {
   async mounted() {
     await this.getList();
   },
+  
 };
 </script>
 
