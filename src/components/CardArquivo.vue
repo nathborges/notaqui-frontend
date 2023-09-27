@@ -13,7 +13,7 @@
             class="flex-1"
             title="Título"
             type="text"
-            :value="file.title"
+            :value="file.titulo"
             :isEditable="edit"
             @updateValue="refreshTitulo"
           />
@@ -21,7 +21,7 @@
             class="flex-1"
             title="Valor"
             type="number"
-            :value="file.value"
+            :value="file.valor"
             step="0.01"
             :isEditable="edit"
             @updateValue="refreshValor"
@@ -53,7 +53,7 @@
         <p class="title">Estabelecimento</p>
         <div class="flex flex-col estabelecimento">
           <div class="flex gap-2 estabelecimento">
-            <item class="flex-1" title="Nome" :value="file.nomeEmpresa" />
+            <item class="flex-1" title="Nome" :value="file.razaoSocial" />
             <item class="flex-1" title="CNPJ" :value="file.cnpj" />
           </div>
           <item class="flex-1" title="Atividade" :value="file.tipoEmpresa" />

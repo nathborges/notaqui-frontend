@@ -1,45 +1,47 @@
-import moment from 'moment';
-import axios from '../axios/axios';
-import getBase64 from '../utils/getBase64';
-import getTypeOfFile from '../utils/getTypeOfFile';
+import moment from "moment";
+import axios from "../axios/axios";
+import getBase64 from "../utils/getBase64";
+import getTypeOfFile from "../utils/getTypeOfFile";
 
 let number = 1;
 
 export default {
   async list() {
-    const data = await axios.get('/compras/buscar');
+    const data = await axios.get("/compras/buscar");
     return data;
   },
   async getFileInformation(file) {
     const base64 = await getBase64(file);
     const body = { conteudo: `${base64}` };
-    const rawData = await axios.post('/ocr/identificar', body, {
+    const rawData = await axios.post("/ocr/identificar", body, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
-    if (rawData.data.infoPj.cnpj == 'Nao encontrado') {
+    if (rawData.data.infoPj.cnpj == "Nao encontrado") {
       throw new Error();
     }
 
     const data = rawData.data;
 
-    const object = {
-      cnpj: data.infoPj.cnpj || '',
-      nomeEmpresa: data.infoPj.razaoSocial || '',
-      tipoEmpresa: data.infoPj.tipoEmpresa || '',
-      value: data.valor || 0.00,
-      title: `Nota ${number}`,
-      data: moment().format('DD/MM/YYYY'),
+    const informacoesNota = {
+      cnpj: data.infoPj.cnpj,
+      razaoSocial: data.infoPj.razaoSocial,
+      naturezaJuridica: data.infoPj.naturezaJuridica,
+      tipoEmpresa: data.infoPj.tipoEmpresa,
+      valor: data.valor.toFixed(2),
+      titulo: `Nota ${number}`,
+      data: moment().format("DD/MM/YYYY"),
     };
 
     number = number + 1;
-    return object;
+    return informacoesNota;
   },
   async sendFile(file) {
     const base64 = await getBase64(file.raw);
     const type = getTypeOfFile(file.raw);
+    const nome = file.raw.name || '';
 
     const body = {
       infoPj: {
@@ -48,18 +50,19 @@ export default {
         naturezaJuridica: file.naturezaJuridica,
         tipoEmpresa: file.tipoEmpresa,
       },
-      valor: file.value,
-      matricula: 'rm88426',
+      valor: file.valor,
+      matricula: "rm88426",
       anexo: {
+        nome: nome,
         conteudo: base64,
         extensao: type,
       },
-      titulo: file.title,
-      dataRegistro: file.data
+      titulo: file.titulo,
+      dataRegistro: file.data,
     };
-    return await axios.post('/compras/cadastrar', body, {
+    return await axios.post("/compras/cadastrar", body, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
   },

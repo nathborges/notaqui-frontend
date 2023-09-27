@@ -127,6 +127,7 @@ export default {
     async getData(file) {
       try {
         const fileInformation = await service.getFileInformation(file);
+        console.log(fileInformation)
         return { ...fileInformation, name: file.name, raw: file };
       } catch (error) {
         return null;

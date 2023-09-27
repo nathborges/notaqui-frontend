@@ -68,17 +68,6 @@ export default {
       password: "",
     };
   },
-  setup() {
-    const myStore = store;
-
-    function login() {
-      console.log(myStore);
-    }
-
-    return {
-      login,
-    };
-  },
   computed: {
     returnUrl() {
       return URL.createObjectURL(this.file.raw);
