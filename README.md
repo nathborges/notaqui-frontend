@@ -1,14 +1,13 @@
 # Notaqui
 
 ## Sobre
-Notaqui é uma web-aplicação que tem como próposito a leitura, identificação e categorização de notas fiscais ou cupons fiscais. A ideia é auxiliar a Sanofi com um processo automatizado e inteligente para gerenciar e contabilizar seus gastos, diminuindo assim, o tempo gasto pelos colaboradores da área de Despesa com um trabalho repetitivo e demorado.
+Notaqui é uma web-aplicação que tem como propósito a leitura, identificação e categorização de notas fiscais ou cupons fiscais. A ideia é auxiliar a Sanofi com um processo automatizado e inteligente para gerenciar e contabilizar seus gastos, diminuindo assim, o tempo gasto pelos colaboradores da área de Despesa com um trabalho repetitivo e demorado.
 
 ## Features
 - Login;
-- O usuário pode, através de uma ou várias imagens de nota fiscal/cupom fiscal, criar uma nova despesa;
-- Ao adicionar a nota ao site, ela será processada e o funcionário da Sanofi conseguirá ver o valor gasto e dados sobre o estabelecimento do gasto (como CNPJ, nome da empresa e ramo que atua). Uma vez com todas essas informações, ele poderá editar o texto da nota e submeter para a criação de despesa.
-
-- Na página principal da aplicação, o site possui um gráfico com uma visão geral de todas as despesas já cadastradas por dia.
+- O usuário pode, através de imagens de nota fiscais/cupom fiscais, criar novas despesas;
+- Ao adicionar a nota fiscal ao site, ela será processada pelo back-end e serão apresentados todos os dados relacionado a mesma, tal como CNPJ, nome da empresa e ramo que atua. Uma vez com todas essas informações, poderá ser editada pelo usuário e submetida para ser salva no banco de dados.
+- Na página principal da aplicação, a aplicação possui um gráfico com uma visão geral de todas as despesas já cadastradas, sendo agrupadas por dia.
 
 ## Tecnologias usadas
 
