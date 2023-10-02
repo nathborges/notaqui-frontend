@@ -1,6 +1,7 @@
 # Notaqui
+Vídeo sobre o projeto: [Link](https://youtu.be/OFvhe_3UgT4)
 
-[www.notaqui.tech](www.notaqui.tech)
+Live: [www.notaqui.tech](www.notaqui.tech)
 
 ## Sobre
 Notaqui é uma web-aplicação que tem como propósito a leitura, identificação e categorização de notas fiscais ou cupons fiscais. A ideia é auxiliar a Sanofi com um processo automatizado e inteligente para gerenciar e contabilizar seus gastos, diminuindo assim, o tempo gasto pelos colaboradores da área de Despesa com um trabalho repetitivo e demorado.
@@ -51,7 +52,12 @@ O fluxo do Notaqui é simples, conforme diagrama arquitetado, o front-end irá r
 Depois de clonar esse repositório, use o `npm i` para instalar todas as dependencias e `npm run dev` para rodar o projeto.
 <br>Utilizamos o node 18.17.1.</br>
 
-
+## Autores
+RM86786 | Arthur Sales Guilherme <br>
+RM89336 | Derek Seiji Lima Sadakane <br>
+RM87237 | Enzo Lelis de Lima <br>
+RM89113 | Matheus Gava Silva <br>
+RM88426 | Nathália Ferreira Borges <br>
 
   
 
