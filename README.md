@@ -1,5 +1,7 @@
 # Notaqui
 
+[www.notaqui.tech](www.notaqui.tech)
+
 ## Sobre
 Notaqui é uma web-aplicação que tem como propósito a leitura, identificação e categorização de notas fiscais ou cupons fiscais. A ideia é auxiliar a Sanofi com um processo automatizado e inteligente para gerenciar e contabilizar seus gastos, diminuindo assim, o tempo gasto pelos colaboradores da área de Despesa com um trabalho repetitivo e demorado.
 
