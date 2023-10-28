@@ -142,8 +142,8 @@ export default {
         return { ...fileInformation, name: file.name, raw: file };
       } catch (error) {
         this.$notify({
-          title: "Error ao identificar a imagem",
-          text: "Não foi possível identificar os dados. Por favor, certifique-se que a imagem está em boa qualidade e legível.",
+          title: "Erro ao identificar os dados da imagem",
+          text: "Por favor, certifique-se que a imagem está em boa qualidade e legível.",
           duration: 2500,
         });
 

@@ -34,6 +34,7 @@ export default {
       titulo: `Nota ${number}`,
       data: moment().format("DD/MM/YYYY"),
       categoria: data.infoPj.categoria,
+      idTipoEmpresa: data.infoPj.idTipoEmpresa,
     };
 
     number = number + 1;
@@ -63,6 +64,7 @@ export default {
       titulo: `Nota ${number}`,
       data: moment().format("DD/MM/YYYY"),
       categoria: data.infoPj.categoria,
+      idTipoEmpresa: data.infoPj.idTipoEmpresa,
     };
 
     number = number + 1;
@@ -82,6 +84,7 @@ export default {
         naturezaJuridica: file.naturezaJuridica,
         tipoEmpresa: file.tipoEmpresa,
         categoria: file.categoria,
+        idTipoEmpresa: file.idTipoEmpresa,
       },
       valor: file.valor,
       matricula: "rm88426",
