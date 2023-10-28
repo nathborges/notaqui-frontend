@@ -4,10 +4,19 @@
       <h2>{{ getDay }}</h2>
     </div>
     <div class="days">
-      <div class="each-day-container" v-for="(object, i) in objects" :key="i">
+      <div class="each-day-container flex-col" v-for="(object, i) in objects" :key="i">
+        <div class="flex">
+          <h3 class="flex-1">{{ object.titulo }}</h3>
+          <h3>
+            {{
+              object.valor.toLocaleString("pt-br", {
+                style: "currency",
+                currency: "BRL",
+              })
+            }}
+          </h3>
+        </div>
         <div>
-          <h3>{{ object.titulo }}</h3>
-          <div>
             <p>
               <strong>CNPJ:</strong>
               {{
@@ -18,21 +27,14 @@
               }}
             </p>
             <p>
-              <strong>Nome do estabelecimento:</strong> {{ object.infoPj.razaoSocial }}
+              <strong>Nome do estabelecimento:</strong>
+              {{ object.infoPj.razaoSocial }}
             </p>
-              <p>
-              <strong>Categoria:</strong> {{ object.infoPj.categoria }}
+            <p>
+              <strong>Categoria:</strong>
+              {{ formatarPascalCase(object.infoPj.categoria) }}
             </p>
-          </div>
         </div>
-        <h3>
-          {{
-            object.valor.toLocaleString("pt-br", {
-              style: "currency",
-              currency: "BRL",
-            })
-          }}
-        </h3>
       </div>
     </div>
   </div>
@@ -56,7 +58,7 @@ export default {
     getDay() {
       const date = moment(this.dia, "DD/MM/YYYY");
 
-      if (moment().format('DD/MM/YYYY') == this.dia) {
+      if (moment().format("DD/MM/YYYY") == this.dia) {
         return `Hoje, ${this.dia}`;
       }
 
@@ -71,6 +73,19 @@ export default {
       ];
       const dayOfWeek = date.isoWeekday() - 1;
       return `${diasDaSemana[dayOfWeek]}, ${this.dia}`;
+    },
+  },
+  methods: {
+    formatarPascalCase(inputString) {
+      if (!inputString) {
+        return "";
+      }
+      return inputString
+        .split(" ")
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ");
     },
   },
 };
@@ -91,7 +106,6 @@ h2 {
 }
 
 .each-day-container {
-  display: flex;
   text-align: left;
   font-size: 16px;
   flex: 1;

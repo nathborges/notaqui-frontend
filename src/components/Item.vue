@@ -1,5 +1,9 @@
 <template>
-  <div class="item" :style="isEditable ? '' : 'background: transparent'">
+  <div
+    :class="{ shake: isInvalid }"
+    class="item"
+    :style="isEditable ? '' : 'background: transparent'"
+  >
     <p class="title">
       {{ title }}
     </p>
@@ -19,13 +23,16 @@
       v-model="newValue"
       inputmode="numeric"
       @input="validarCnpj"
-      maxlength="14" size="14"
+      maxlength="14"
+      size="14"
     />
     <input
       v-if="isEditable && type == 'date'"
       :type="type"
       class="value flex-2"
       v-model="newValue"
+      @input="validarData"
+      min="2000-01-01"
       max="2999-12-32"
     />
 
@@ -39,6 +46,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "Item",
   props: {
@@ -50,6 +58,7 @@ export default {
   data() {
     return {
       newValue: this.value,
+      isInvalid: false,
     };
   },
   watch: {
@@ -58,26 +67,45 @@ export default {
     },
   },
   methods: {
-      validarNumero() {
-        if (!this.newValue || this.value < 0) {
-          return;
-        }
+    validarNumero() {
+      if (!this.newValue || this.value < 0) {
+        return;
+      }
       this.newValue = this.newValue.replace(/[^0-9.]/g, "");
     },
-      validarCnpj() {
-        if (!this.newValue || this.value < 0) {
-          return;
-        }
-      this.newValue = this.newValue.replace(/\D/g, '');;
+    validarCnpj() {
+      if (!this.newValue || this.value < 0) {
+        return;
+      }
+      this.newValue = this.newValue.replace(/\D/g, "");
     },
-  }
+    validarData() {
+      if (!this.newValue || this.value < 0) {
+        return;
+      }
+
+      const dataParaVerificar = moment(this.newValue);
+      const limiteMinimo = moment('2010-01-01', 'YYYY-MM-DD');
+
+      const dataAtual = moment();
+
+      if (dataParaVerificar.isAfter(dataAtual)) {
+        this.newValue = dataAtual;
+        this.$notify({
+          title: "Data inválida",
+          text: "Não é possível cadastrar uma despesa em uma data futura",
+          duration: 2500,
+        });
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .item {
   padding-top: 0.5%;
-    padding-bottom: 0.5%;
+  padding-bottom: 0.5%;
 
   padding-right: 1%;
   padding-left: 1%;
@@ -117,5 +145,30 @@ input:focus {
   box-shadow: 0;
   outline-offset: 0px;
   outline: none;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
 }
 </style>

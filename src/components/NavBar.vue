@@ -100,7 +100,7 @@ a {
   flex: 0.5;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 700px) and (orientation : portrait){
   .nav-bar-user {
     padding: 2vh;
   }
@@ -119,5 +119,36 @@ a {
   .nav-bar-items {
     flex-direction: row;
   }
+}
+
+
+@media (max-height: 700px) and (orientation : landscape){
+  .nav-bar-user {
+    padding: 2vw;
+  }
+
+  .nav-bar-user img {
+    display: none;
+  }
+  .nav-bar-logo {
+    display: none;
+  }
+
+  .each-item p {
+    display: none;
+  }
+
+  .nav-bar-items {
+    flex-direction: row;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .each-item {
+    height: 10vh;
+  }
+
 }
 </style>

@@ -101,7 +101,7 @@ export default {
 <style scoped>
 .main-container {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 }
 
 .main-container p {
@@ -117,7 +117,7 @@ export default {
 }
 
 .inputs-container {
-  gap: 40px;
+  gap: 5vh;
   flex-direction: column;
   justify-content: center;
   align-content: center;
@@ -210,7 +210,7 @@ input {
   min-height: 10vh;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 700px) and (orientation : portrait){
   .main-container {
     flex-direction: column;
   }
@@ -242,6 +242,19 @@ input {
     width: 50vw;
   }
 
+}
 
+@media (max-height: 700px) and (orientation : landscape){
+  h2 {
+    font-size: 17px
+  }
+  p {
+  font-family: WorkSans;
+  font-weight: 600;
+  font-size: 15px;
+}
+input {
+  font-size: 15px
+}
 }
 </style>

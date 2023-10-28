@@ -73,6 +73,14 @@ export default {
   data() {
     return {
       despesas: {},
+      categorias: [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+      ],
+      selectedCategoria: "",
       isLoading: true,
       options: {
         scales: {
@@ -105,10 +113,21 @@ export default {
       const response = await service.list();
 
       response.data.forEach((element) => {
-        // const despesa = { [element.dataRegistro]: [] }.
         if (!this.despesas[element.dataRegistro]) {
           this.despesas[element.dataRegistro] = [];
         }
+
+        const categoriaAlreadyExists = this.categorias.some(
+          (each) => each == this.categorias
+        );
+
+        if (!categoriaAlreadyExists) {
+          this.categorias.push({
+            name: element.infoPj.categoria,
+            code: element.infoPj.categoria,
+          });
+        }
+
         this.despesas[element.dataRegistro].push(element);
       });
       this.isLoading = false;
@@ -189,7 +208,7 @@ h2 {
   width: 100%;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 700px) and (orientation: portrait) {
   .section-container {
     width: 100vw;
     margin-bottom: 0 !important;

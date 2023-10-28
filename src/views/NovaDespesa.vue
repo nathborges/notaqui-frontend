@@ -67,7 +67,14 @@ main {
   filter: blur(2px);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 700px) and (orientation : portrait){
+  main {
+    flex-direction: column;
+  }
+}
+
+
+@media (max-height: 700px) and (orientation : landscape){
   main {
     flex-direction: column;
   }

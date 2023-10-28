@@ -266,12 +266,24 @@ label {
   align-self: flex-end;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 700px) and (orientation : portrait){
   .section-container {
     width: 100vw;
     margin-bottom: 0 !important;
     border-radius: 10px 10px 0 0 !important;
     text-align: center;
   }
+}
+
+@media (max-height: 700px) and (orientation : landscape){
+.section-container {
+  gap: 4vw;
+}
+
+.content-container {
+    gap: 4vw;
+
+}
+
 }
 </style>

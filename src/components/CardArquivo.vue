@@ -43,13 +43,13 @@
           <div class="flex flex-row justify-evenly">
             <img
               v-show="!edit"
-              class="icon"
+              class="icon edit"
               @click="changeEdit"
               src="../assets/pencil-icon.svg"
             />
             <img
               v-show="edit"
-              class="icon"
+              class="icon edit"
               @click="disableEdit"
               src="../assets/check-icon.svg"
             />
@@ -71,7 +71,7 @@
             />
             <img
               v-show="file.cnpjInvalido"
-              class="icon self-center"
+              class="icon self-center edit"
               @click="loadCnpj"
               src="../assets/check-icon.svg"
             />
@@ -280,7 +280,7 @@ a {
   animation: shake 0.5s;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px) and (orientation: portrait) {
   .estabelecimento {
     flex-direction: column;
   }
@@ -294,12 +294,38 @@ a {
   }
 
   .icon {
-    height: 5vh;
+    height: 4vh;
     align-self: flex-end;
   }
 
   .ghost-div {
     display: none;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .file-card-container {
+    flex-direction: row;
+  }
+  .estabelecimento {
+    flex-direction: column;
+  }
+
+  .documento {
+    flex-direction: column;
+  }
+
+  .icon {
+    height: 5vh;
+    align-self: flex-start;
+  }
+
+  .ghost-div {
+    display: none;
+  }
+
+  .edit {
+    align-self: center;
   }
 }
 </style>
