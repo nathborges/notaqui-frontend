@@ -4,14 +4,22 @@
       {{ title }}
     </p>
     <span class="vr" :style="isEditable ? '' : 'border-color: #B5B5B5'"></span>
-    <p v-if="type == 'number'" class="value flex-2">R$</p>
+    <p v-if="type == 'price'" class="value flex-2">R$</p>
     <p v-if="!isEditable" class="value flex-2">{{ value }}</p>
+    <input
+      v-if="isEditable && type == 'price'"
+      class="value flex-2"
+      v-model="newValue"
+      inputmode="numeric"
+      @input="validarNumero"
+    />
     <input
       v-if="isEditable && type == 'number'"
       class="value flex-2"
       v-model="newValue"
       inputmode="numeric"
-      @input="validarNumero"
+      @input="validarCnpj"
+      maxlength="14" size="14"
     />
     <input
       v-if="isEditable && type == 'date'"
@@ -31,11 +39,8 @@
 </template>
 
 <script>
-import DatePick from 'vue-date-pick';
-
 export default {
   name: "Item",
-  components: {DatePick},
   props: {
     title: "",
     value: "",
@@ -58,6 +63,12 @@ export default {
           return;
         }
       this.newValue = this.newValue.replace(/[^0-9.]/g, "");
+    },
+      validarCnpj() {
+        if (!this.newValue || this.value < 0) {
+          return;
+        }
+      this.newValue = this.newValue.replace(/\D/g, '');;
     },
   }
 };

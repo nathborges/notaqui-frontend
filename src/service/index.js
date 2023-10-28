@@ -10,6 +10,24 @@ export default {
     const data = await axios.get("/compras/buscar");
     return data;
   },
+  async getCnpjData(cnpj) {
+    const rawData = await axios.get(`empresas/dados/${cnpj}`);
+    if (
+      rawData.data.razaoSocial == "Nao encontrado" ||
+      !rawData.data.razaoSocial
+    ) {
+      return null;
+    }
+
+    return {
+      cnpj: rawData.data.cnpj,
+      razaoSocial: rawData.data.razaoSocial,
+      naturezaJuridica: rawData.data.naturezaJuridica,
+      tipoEmpresa: rawData.data.tipoEmpresa,
+      categoria: rawData.data.categoria,
+      idTipoEmpresa: rawData.data.idTipoEmpresa,
+    };
+  },
   async getFileInformation(file) {
     const base64 = await getBase64(file);
     const body = { conteudo: `${base64}` };
@@ -18,10 +36,6 @@ export default {
         "Content-Type": "application/json",
       },
     });
-
-    if (rawData.data.infoPj.cnpj == "Nao encontrado") {
-      throw new Error();
-    }
 
     const data = rawData.data;
 
@@ -35,7 +49,17 @@ export default {
       data: moment().format("DD/MM/YYYY"),
       categoria: data.infoPj.categoria,
       idTipoEmpresa: data.infoPj.idTipoEmpresa,
+      cnpjInvalido: false, 
     };
+
+    if (rawData.data.infoPj.cnpj == "Nao encontrado") {
+      informacoesNota.cnpjInvalido = true;
+      informacoesNota.razaoSocial = 'Não encontrado';
+      informacoesNota.tipoEmpresa = 'Não encontrado';
+      informacoesNota.idTipoEmpresa = 'Não encontrado';
+      informacoesNota.categoria = 'Não encontrado';
+      informacoesNota.cnpj = '';
+    }
 
     number = number + 1;
     return informacoesNota;
@@ -49,10 +73,6 @@ export default {
       },
     });
 
-    if (rawData.data.infoPj.cnpj == "Nao encontrado") {
-      throw new Error();
-    }
-
     const data = rawData.data;
 
     const informacoesNota = {
@@ -65,7 +85,18 @@ export default {
       data: moment().format("DD/MM/YYYY"),
       categoria: data.infoPj.categoria,
       idTipoEmpresa: data.infoPj.idTipoEmpresa,
+      cnpjInvalido: false, 
     };
+
+    if (rawData.data.infoPj.cnpj == "Nao encontrado") {
+      informacoesNota.cnpjInvalido = true;
+      informacoesNota.razaoSocial = 'Não encontrado';
+      informacoesNota.tipoEmpresa = 'Não encontrado';
+      informacoesNota.idTipoEmpresa = 'Não encontrado';
+      informacoesNota.categoria = 'Não encontrado';
+      informacoesNota.cnpj = '';
+
+    }
 
     number = number + 1;
     return informacoesNota;
@@ -73,9 +104,7 @@ export default {
   async sendFile(file) {
     const base64 = await getBase64(file.raw);
     const type = getTypeOfFile(file.raw);
-    const nome = file.raw.name || '';
-
-    console.log(file.categoria);
+    const nome = file.raw.name || "";
 
     const body = {
       infoPj: {

@@ -21,8 +21,8 @@
         <div v-for="(eachFile, index) in filesAttached" :key="index">
           <CardArquivo
             :file="eachFile"
-            @editingChange="handleIsEditing"
             @deleteItem="handleDelete(index)"
+            @loadCnpj="handleLoadCnpj(index)"
           />
         </div>
       </div>
@@ -113,8 +113,12 @@ export default {
     return {
       filesAttached: [],
       loadingIndicator: false,
-      isEditing: false,
     };
+  },
+  computed: {
+    itHasInvalidFile() {
+      return this.filesAttached.some((eachFile) => eachFile.cnpjInvalido);
+    },
   },
   methods: {
     async checkFiles(event) {
@@ -132,44 +136,57 @@ export default {
       });
     },
     async getData(file) {
-      try {
-        let fileInformation;
-        if (file.type == "application/pdf") {
-          fileInformation = await service.getFileInformationPdf(file);
-        } else {
-          fileInformation = await service.getFileInformation(file);
-        }
-        return { ...fileInformation, name: file.name, raw: file };
-      } catch (error) {
-        this.$notify({
-          title: "Erro ao identificar os dados da imagem",
-          text: "Por favor, certifique-se que a imagem está em boa qualidade e legível.",
-          duration: 2500,
-        });
-
-        return null;
+      let fileInformation;
+      if (file.type == "application/pdf") {
+        fileInformation = await service.getFileInformationPdf(file);
+      } else {
+        fileInformation = await service.getFileInformation(file);
       }
+      return { ...fileInformation, name: file.name, raw: file };
     },
     async submit() {
+      if (this.itHasInvalidFile) {
+        this.$notify({
+          title: "Ocorreu um problema ao salvar a sua despesa.",
+          text: "Por favor, verifique se há alguma despesa inválida e tente novamente.",
+          duration: 2500,
+        });
+        return;
+      }
       this.filesAttached.forEach(async (file) => {
         this.loadingIndicator = true;
         try {
           await service.sendFile(file);
+          this.loadingIndicator = false;
+          this.$router.push("/dashboard");
         } catch (error) {
           this.$notify({
-            title: "Ocorreu um problema ao salvar a sua nota. Por favor, tente de novo.",
+            title: "Ocorreu um problema ao salvar a sua nota. Tente novamente.",
             duration: 2500,
           });
         }
         this.loadingIndicator = false;
-        this.$router.push("/dashboard");
       });
-    },
-    handleIsEditing(value) {
-      this.isEditing = value;
     },
     handleDelete(value) {
       this.filesAttached.splice(value, 1);
+    },
+    async handleLoadCnpj(index) {
+      const targetFile = this.filesAttached[index];
+      const empresaInformation = await service.getCnpjData(targetFile.cnpj);
+      if (!empresaInformation) {
+          this.$notify({
+            title: "CNPJ inválido",
+            text: "Infelizmente, não encontramos o CNPJ informado nos nossos registros. Por favor, tente novamente.",
+            duration: 2500,
+          });
+          return;
+      }
+      this.filesAttached[index] = {
+        ...targetFile,
+        ...empresaInformation,
+        cnpjInvalido: false,
+      };
     },
   },
 };
