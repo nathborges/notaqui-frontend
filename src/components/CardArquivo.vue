@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row shadow file-card-container rounded-lg w-full gap-6">
+  <div :class="{ teste: file.cnpjInvalido }" class="flex flex-row shadow file-card-container rounded-lg w-full gap-6">
     <img
       class="icon delete"
       @click="deleteItem"
@@ -258,6 +258,10 @@ a {
   margin: 1vh;
 }
 
+.teste {
+  border: 1px solid #cc0000;
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -294,15 +298,21 @@ a {
 
   .file-card-container {
     flex-direction: column;
+    gap: 1vh;
   }
 
   .icon {
-    height: 4vh;
+    height: 3vh;
     align-self: flex-end;
   }
 
   .ghost-div {
     display: none;
+  }
+
+  img {
+    height: 10vh;
+    width: auto;
   }
 }
 

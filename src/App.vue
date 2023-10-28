@@ -34,12 +34,12 @@ body {
 
 p {
   font-family: WorkSans;
-  font-size: clamp(1rem, 0.5vw, 0.3vh);
+  font-size: clamp(0.9rem, 0.5vw, 0.3vh);
 }
 
 h1 {
   font-family: WorkSans;
-  font-size: clamp(2rem, 2vw, 2vh);
+  font-size: clamp(1.6rem, 2vw, 2vh);
 }
 
 h2 {

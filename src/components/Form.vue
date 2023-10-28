@@ -27,7 +27,7 @@
           />
         </div>
       </div>
-      <div class="flex flex-col" style="gap: 3vh">
+      <div class="flex flex-col button-and-attachment">
         <div
           class="flex flex-col align-middle"
           :style="loadingIndicator ? 'filter: blur(2px)' : ''"
@@ -39,7 +39,7 @@
             >
               <div class="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
-                  class="w-8 h-8 mb-4 text-gray-500"
+                  class="w-8 h-8 mb-2 text-gray-500"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -58,7 +58,7 @@
                   <span class="font-semibold">nota fiscal</span> ou um
                   <span class="font-semibold">cupom fiscal</span>
                 </p>
-                <p class="sm text-gray:200">PDF, PNG, JPG ou JPEG</p>
+                <p class="sm text-gray:200 filetype">PDF, PNG, JPG ou JPEG</p>
               </div>
               <input
                 id="dropzone-file"
@@ -281,12 +281,23 @@ label {
   align-self: flex-end;
 }
 
+.button-and-attachment {
+  gap: 1vh;
+}
+
 @media (max-width: 700px) and (orientation: portrait) {
   .section-container {
     width: 100vw;
     margin-bottom: 0 !important;
     border-radius: 10px 10px 0 0 !important;
     text-align: center;
+  }
+  .filetype {
+    display: none;
+  }
+
+    .content-container {
+    gap: 0;
   }
 }
 

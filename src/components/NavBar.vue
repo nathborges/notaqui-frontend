@@ -103,6 +103,11 @@ a {
 @media (max-width: 700px) and (orientation: portrait) {
   .nav-bar-user {
     padding: 2vh;
+    display: none;
+  }
+
+  .each-item {
+    height: 5vh;
   }
 
   .nav-bar-user img {
@@ -118,6 +123,10 @@ a {
 
   .nav-bar-items {
     flex-direction: row;
+  }
+
+  .nav-bar-container{
+    flex: none;
   }
 }
 
