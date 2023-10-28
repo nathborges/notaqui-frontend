@@ -85,7 +85,7 @@ export default {
       }
 
       const dataParaVerificar = moment(this.newValue);
-      const limiteMinimo = moment('2010-01-01', 'YYYY-MM-DD');
+      const limiteMinimo = moment("2010-01-01", "YYYY-MM-DD");
 
       const dataAtual = moment();
 

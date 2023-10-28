@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'WorkSans';
-  src: local('WorkSans'), url(src/assets/fonts/WorkSans-VariableFont.ttf) format('ttf');
+  font-family: "WorkSans";
+  src:
+    local("WorkSans"),
+    url(src/assets/fonts/WorkSans-VariableFont.ttf) format("ttf");
 }
 
 :root {
@@ -66,4 +68,3 @@ button:focus-visible {
   height: 100vh;
   scrollbar-color: light !important;
 }
-

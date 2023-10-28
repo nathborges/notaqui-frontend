@@ -23,8 +23,8 @@
 export default {
   methods: {
     logout() {
-      localStorage.setItem('userAuthorized', false);
-      window.location = '/';
+      localStorage.setItem("userAuthorized", false);
+      window.location = "/";
     },
   },
 };
@@ -100,7 +100,7 @@ a {
   flex: 0.5;
 }
 
-@media (max-width: 700px) and (orientation : portrait){
+@media (max-width: 700px) and (orientation: portrait) {
   .nav-bar-user {
     padding: 2vh;
   }
@@ -121,8 +121,7 @@ a {
   }
 }
 
-
-@media (max-height: 700px) and (orientation : landscape){
+@media (max-width: 768px) and (orientation: landscape) {
   .nav-bar-user {
     padding: 2vw;
   }
@@ -149,6 +148,5 @@ a {
   .each-item {
     height: 10vh;
   }
-
 }
 </style>

@@ -55,13 +55,13 @@ main {
   background-color: black !important;
 }
 
-@media (max-width: 700px) and (orientation : portrait){
+@media (max-width: 700px) and (orientation: portrait) {
   main {
     flex-direction: column;
   }
 }
 
-@media (max-height: 700px) and (orientation : landscape){
+@media (max-width: 768px) and (orientation: landscape) {
   main {
     flex-direction: column;
   }

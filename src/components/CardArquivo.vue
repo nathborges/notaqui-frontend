@@ -108,7 +108,7 @@ export default {
   },
   data() {
     return {
-      edit: false || this.file.cnpjInvalido,
+      edit: false,
       value: "",
       title: "",
     };
@@ -175,7 +175,7 @@ export default {
       return inputString
         .split(" ")
         .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
         )
         .join(" ");
     },
@@ -193,6 +193,9 @@ export default {
     edit() {
       this.$emit("editingChange", this.edit);
     },
+  },
+  mounted() {
+    this.edit = this.file.cnpjInvalido;
   },
 };
 </script>
@@ -303,7 +306,7 @@ a {
   }
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
+@media (max-width: 768px) and (orientation: landscape) {
   .file-card-container {
     flex-direction: row;
   }

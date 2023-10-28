@@ -23,6 +23,7 @@
             :file="eachFile"
             @deleteItem="handleDelete(index)"
             @loadCnpj="handleLoadCnpj(index)"
+            @editingChange="handleIsEditing"
           />
         </div>
       </div>
@@ -113,6 +114,7 @@ export default {
     return {
       filesAttached: [],
       loadingIndicator: false,
+      editing: false,
     };
   },
   computed: {
@@ -153,6 +155,16 @@ export default {
         });
         return;
       }
+
+      if (this.editing) {
+        this.$notify({
+          title: "Ocorreu um problema ao salvar a sua despesa.",
+          text: "Por favor, verifique se há alguma despesa sendo editada. Confirme as alterações e tente novamente.",
+          duration: 2500,
+        });
+        return;
+      }
+
       this.filesAttached.forEach(async (file) => {
         this.loadingIndicator = true;
         try {
@@ -171,16 +183,19 @@ export default {
     handleDelete(value) {
       this.filesAttached.splice(value, 1);
     },
+    handleIsEditing(value) {
+      this.editing = value;
+    },
     async handleLoadCnpj(index) {
       const targetFile = this.filesAttached[index];
       const empresaInformation = await service.getCnpjData(targetFile.cnpj);
       if (!empresaInformation) {
-          this.$notify({
-            title: "CNPJ inválido",
-            text: "Infelizmente, não encontramos o CNPJ informado nos nossos registros. Por favor, tente novamente.",
-            duration: 2500,
-          });
-          return;
+        this.$notify({
+          title: "CNPJ inválido",
+          text: "Infelizmente, não encontramos o CNPJ informado nos nossos registros. Por favor, tente novamente.",
+          duration: 2500,
+        });
+        return;
       }
       this.filesAttached[index] = {
         ...targetFile,
@@ -266,7 +281,7 @@ label {
   align-self: flex-end;
 }
 
-@media (max-width: 700px) and (orientation : portrait){
+@media (max-width: 700px) and (orientation: portrait) {
   .section-container {
     width: 100vw;
     margin-bottom: 0 !important;
@@ -275,15 +290,13 @@ label {
   }
 }
 
-@media (max-height: 700px) and (orientation : landscape){
-.section-container {
-  gap: 4vw;
-}
-
-.content-container {
+@media (max-width: 768px) and (orientation: landscape) {
+  .section-container {
     gap: 4vw;
+  }
 
-}
-
+  .content-container {
+    gap: 4vw;
+  }
 }
 </style>

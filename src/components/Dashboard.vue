@@ -23,6 +23,7 @@
         :key="i"
       />
     </div>
+
     <div v-if="isLoading" class="content-container loading" role="status">
       <svg
         aria-hidden="true"
@@ -64,22 +65,19 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 export default {
   name: "Dashboard",
-  components: { CardDia, Bar },
+  components: {
+    CardDia,
+    Bar,
+  },
   data() {
     return {
       despesas: {},
-      categorias: [
-        { name: "New York", code: "NY" },
-        { name: "Rome", code: "RM" },
-        { name: "London", code: "LDN" },
-        { name: "Istanbul", code: "IST" },
-        { name: "Paris", code: "PRS" },
-      ],
+      categorias: [],
       selectedCategoria: "",
       isLoading: true,
       options: {
@@ -118,7 +116,7 @@ export default {
         }
 
         const categoriaAlreadyExists = this.categorias.some(
-          (each) => each == this.categorias
+          (each) => each == this.categorias,
         );
 
         if (!categoriaAlreadyExists) {

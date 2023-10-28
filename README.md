@@ -1,12 +1,15 @@
 # Notaqui
+
 Vídeo sobre o projeto: [Link](https://youtu.be/OFvhe_3UgT4)
 
 Live: [www.notaqui.tech](www.notaqui.tech)
 
 ## Sobre
+
 Notaqui é uma web-aplicação que tem como propósito a leitura, identificação e categorização de notas fiscais ou cupons fiscais. A ideia é auxiliar a Sanofi com um processo automatizado e inteligente para gerenciar e contabilizar seus gastos, diminuindo assim, o tempo gasto pelos colaboradores da área de Despesa com um trabalho repetitivo e demorado.
 
 ## Features
+
 - Login;
 - O usuário pode, através de imagens de nota fiscais/cupom fiscais, criar novas despesas;
 - Ao adicionar a nota fiscal ao site, ela será processada pelo back-end e serão apresentados todos os dados relacionado a mesma, tal como CNPJ, nome da empresa e ramo que atua. Uma vez com todas essas informações, poderá ser editada pelo usuário e submetida para ser salva no banco de dados.
@@ -15,7 +18,9 @@ Notaqui é uma web-aplicação que tem como propósito a leitura, identificaçã
 ## Tecnologias usadas
 
 ### Front-end
-----
+
+---
+
  <div style="display:flex">
     <a><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="Javascript"/></a>
  <a>
@@ -31,7 +36,9 @@ Notaqui é uma web-aplicação que tem como propósito a leitura, identificaçã
 O front-end do notaqui foi desenvolvido usando Vue.js 3 e javascript vanilla, se comunicando com nosso back-end através de uma API Rest.
 
 ### Back-end
-----
+
+---
+
 <div style="display:flex">
  <a><img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" /></a>
  <a><img src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" alt="Spring"/></a>
@@ -49,15 +56,14 @@ O Notaqui, por ser construído em uma arquitetura web todo o seu fluxo é hospea
 O fluxo do Notaqui é simples, conforme diagrama arquitetado, o front-end irá realizar a requisição via protocolo HTTPS para o Back-end, que, por sua vez recebe o conteudo encodado da imagem (em base 64). Com o conteudo da imagem encodado, é enviado para a API de reconhecimento dos textos presentes na imagem e é retornado para o Back-end. Contudo, com o conteúdo da imagem em texto, entra a lógica do Notaqui, onde via expressões regulares (Regex), capturamos o CNPJ presente no cupom ou nota fiscal e o valor total (valor final da nota, adotamos a lógica de More than Others) onde capturamos todos os valores contidos no conteúdo e pegamos o maior. Com o CNPJ capturado, é realizada uma requisição HTTPS para uma API de consulta da Receita Federal, onde é retornado todos os dados da PJ consultada, como a Razão Social, Natureza Juridica e Atividade da Empresa (CNAE). Tendo todo este input, o Back-end responde ao Front-end, que por sua vez, apresenta ao usuário os dados do cupom ou nota fiscal, para que seja possível o cadastro de fato da despesa. É possível também, editar as informações que o Back-end retornou (caso seja retornado algum dado inválido).
 
 ## Como rodar localmente
+
 Depois de clonar esse repositório, use o `npm i` para instalar todas as dependencias e `npm run dev` para rodar o projeto.
 <br>Utilizamos o node 18.17.1.</br>
 
 ## Autores
+
 RM86786 | Arthur Sales Guilherme <br>
 RM89336 | Derek Seiji Lima Sadakane <br>
 RM87237 | Enzo Lelis de Lima <br>
 RM89113 | Matheus Gava Silva <br>
 RM88426 | Nathália Ferreira Borges <br>
-
-  
-

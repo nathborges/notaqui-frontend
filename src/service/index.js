@@ -49,16 +49,16 @@ export default {
       data: moment().format("DD/MM/YYYY"),
       categoria: data.infoPj.categoria,
       idTipoEmpresa: data.infoPj.idTipoEmpresa,
-      cnpjInvalido: false, 
+      cnpjInvalido: false,
     };
 
     if (rawData.data.infoPj.cnpj == "Nao encontrado") {
       informacoesNota.cnpjInvalido = true;
-      informacoesNota.razaoSocial = 'Não encontrado';
-      informacoesNota.tipoEmpresa = 'Não encontrado';
-      informacoesNota.idTipoEmpresa = 'Não encontrado';
-      informacoesNota.categoria = 'Não encontrado';
-      informacoesNota.cnpj = '';
+      informacoesNota.razaoSocial = "Não encontrado";
+      informacoesNota.tipoEmpresa = "Não encontrado";
+      informacoesNota.idTipoEmpresa = "Não encontrado";
+      informacoesNota.categoria = "Não encontrado";
+      informacoesNota.cnpj = "";
     }
 
     number = number + 1;
@@ -85,17 +85,16 @@ export default {
       data: moment().format("DD/MM/YYYY"),
       categoria: data.infoPj.categoria,
       idTipoEmpresa: data.infoPj.idTipoEmpresa,
-      cnpjInvalido: false, 
+      cnpjInvalido: false,
     };
 
     if (rawData.data.infoPj.cnpj == "Nao encontrado") {
       informacoesNota.cnpjInvalido = true;
-      informacoesNota.razaoSocial = 'Não encontrado';
-      informacoesNota.tipoEmpresa = 'Não encontrado';
-      informacoesNota.idTipoEmpresa = 'Não encontrado';
-      informacoesNota.categoria = 'Não encontrado';
-      informacoesNota.cnpj = '';
-
+      informacoesNota.razaoSocial = "Não encontrado";
+      informacoesNota.tipoEmpresa = "Não encontrado";
+      informacoesNota.idTipoEmpresa = "Não encontrado";
+      informacoesNota.categoria = "Não encontrado";
+      informacoesNota.cnpj = "";
     }
 
     number = number + 1;

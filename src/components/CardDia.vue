@@ -4,7 +4,11 @@
       <h2>{{ getDay }}</h2>
     </div>
     <div class="days">
-      <div class="each-day-container flex-col" v-for="(object, i) in objects" :key="i">
+      <div
+        class="each-day-container flex-col"
+        v-for="(object, i) in objects"
+        :key="i"
+      >
         <div class="flex">
           <h3 class="flex-1">{{ object.titulo }}</h3>
           <h3>
@@ -17,23 +21,23 @@
           </h3>
         </div>
         <div>
-            <p>
-              <strong>CNPJ:</strong>
-              {{
-                object.infoPj.cnpj.replace(
-                  /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
-                  "$1.$2.$3/$4-$5"
-                )
-              }}
-            </p>
-            <p>
-              <strong>Nome do estabelecimento:</strong>
-              {{ object.infoPj.razaoSocial }}
-            </p>
-            <p>
-              <strong>Categoria:</strong>
-              {{ formatarPascalCase(object.infoPj.categoria) }}
-            </p>
+          <p>
+            <strong>CNPJ:</strong>
+            {{
+              object.infoPj.cnpj.replace(
+                /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+                "$1.$2.$3/$4-$5",
+              )
+            }}
+          </p>
+          <p>
+            <strong>Nome do estabelecimento:</strong>
+            {{ object.infoPj.razaoSocial }}
+          </p>
+          <p>
+            <strong>Categoria:</strong>
+            {{ formatarPascalCase(object.infoPj.categoria) }}
+          </p>
         </div>
       </div>
     </div>
@@ -83,7 +87,7 @@ export default {
       return inputString
         .split(" ")
         .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
         )
         .join(" ");
     },

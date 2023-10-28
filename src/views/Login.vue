@@ -210,7 +210,7 @@ input {
   min-height: 10vh;
 }
 
-@media (max-width: 700px) and (orientation : portrait){
+@media (max-width: 700px) and (orientation: portrait) {
   .main-container {
     flex-direction: column;
   }
@@ -241,20 +241,19 @@ input {
   .login-logo {
     width: 50vw;
   }
-
 }
 
-@media (max-height: 700px) and (orientation : landscape){
+@media (max-width: 768px) and (orientation: landscape) {
   h2 {
-    font-size: 17px
+    font-size: 17px;
   }
   p {
-  font-family: WorkSans;
-  font-weight: 600;
-  font-size: 15px;
-}
-input {
-  font-size: 15px
-}
+    font-family: WorkSans;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  input {
+    font-size: 15px;
+  }
 }
 </style>

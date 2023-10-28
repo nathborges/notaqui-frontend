@@ -53,7 +53,4 @@ h2 {
   font-size: clamp(1rem, 0.5vw, 0.3vh) !important;
   border-left: none !important;
 }
-
-
-
 </style>
