@@ -8,12 +8,10 @@
     <p v-if="!isEditable" class="value flex-2">{{ value }}</p>
     <input
       v-if="isEditable && type == 'number'"
-      :type="type"
-      step="0.01"
       class="value flex-2"
-      pattern="[0-9]*[.,]?[0-9]*"
-      maxlength="30"
       v-model="newValue"
+      inputmode="numeric"
+      @input="validarNumero"
     />
     <input
       v-if="isEditable && type == 'date'"
@@ -33,8 +31,11 @@
 </template>
 
 <script>
+import DatePick from 'vue-date-pick';
+
 export default {
   name: "Item",
+  components: {DatePick},
   props: {
     title: "",
     value: "",
@@ -51,6 +52,14 @@ export default {
       this.$emit("updateValue", test);
     },
   },
+  methods: {
+      validarNumero() {
+        if (!this.newValue || this.value < 0) {
+          return;
+        }
+      this.newValue = this.newValue.replace(/[^0-9.]/g, "");
+    },
+  }
 };
 </script>
 

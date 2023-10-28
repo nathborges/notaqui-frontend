@@ -18,7 +18,10 @@
               }}
             </p>
             <p>
-              <strong>Razão Social:</strong> {{ object.infoPj.razaoSocial }}
+              <strong>Nome do estabelecimento:</strong> {{ object.infoPj.razaoSocial }}
+            </p>
+              <p>
+              <strong>Categoria:</strong> {{ object.infoPj.categoria }}
             </p>
           </div>
         </div>

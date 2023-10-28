@@ -47,7 +47,6 @@
 <script>
 import service from "../service";
 import CardDia from "../components/CardDia.vue";
-import CardDiaVazio from "../components/CardDiaVazio.vue";
 import {
   Chart as ChartJS,
   Title,
@@ -70,7 +69,7 @@ ChartJS.register(
 
 export default {
   name: "Dashboard",
-  components: { CardDia, CardDiaVazio, Bar },
+  components: { CardDia, Bar },
   data() {
     return {
       despesas: {},

@@ -19,7 +19,11 @@
         class="align-top card-container flex-col flex gap-4 overflow-y-auto justify-top"
       >
         <div v-for="(eachFile, index) in filesAttached" :key="index">
-          <CardArquivo :file="eachFile" />
+          <CardArquivo
+            :file="eachFile"
+            @editingChange="handleIsEditing"
+            @deleteItem="handleDelete(index)"
+          />
         </div>
       </div>
       <div class="flex flex-col" style="gap: 3vh">
@@ -60,7 +64,7 @@
                 type="file"
                 class="hidden"
                 accept="image/png, image/jpeg,.pdf"
-                @change="previewFiles"
+                @change="checkFiles"
                 multiple
               />
             </label>
@@ -101,6 +105,7 @@
 <script>
 import service from "../service";
 import CardArquivo from "./CardArquivo.vue";
+
 export default {
   components: { CardArquivo },
   name: "Form",
@@ -108,11 +113,13 @@ export default {
     return {
       filesAttached: [],
       loadingIndicator: false,
+      isEditing: false,
     };
   },
   methods: {
-    async previewFiles(event) {
+    async checkFiles(event) {
       const files = Array.from(event.target.files) || [];
+
       files.forEach(async (element) => {
         this.loadingIndicator = true;
 
@@ -134,16 +141,35 @@ export default {
         }
         return { ...fileInformation, name: file.name, raw: file };
       } catch (error) {
+        this.$notify({
+          title: "Error ao identificar a imagem",
+          text: "Não foi possível identificar os dados. Por favor, certifique-se que a imagem está em boa qualidade e legível.",
+          duration: 2500,
+        });
+
         return null;
       }
     },
     async submit() {
       this.filesAttached.forEach(async (file) => {
         this.loadingIndicator = true;
-        await service.sendFile(file);
+        try {
+          await service.sendFile(file);
+        } catch (error) {
+          this.$notify({
+            title: "Ocorreu um problema ao salvar a sua nota. Por favor, tente de novo.",
+            duration: 2500,
+          });
+        }
         this.loadingIndicator = false;
         this.$router.push("/dashboard");
       });
+    },
+    handleIsEditing(value) {
+      this.isEditing = value;
+    },
+    handleDelete(value) {
+      this.filesAttached.splice(value, 1);
     },
   },
 };

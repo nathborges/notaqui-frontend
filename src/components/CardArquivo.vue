@@ -1,5 +1,10 @@
 <template>
   <div class="flex flex-row shadow file-card-container rounded-lg w-full gap-6">
+      <img
+      class="icon delete"
+      @click="deleteItem"
+      src="../assets/delete-icon.svg"
+    />
     <div class="flex align-center justify-center">
       <a :href="returnUrl" class="align-center" target="_blank">
         <img class="rounded-lg align-center" :src="returnUrl" />
@@ -22,7 +27,7 @@
             title="Valor"
             type="number"
             :value="file.valor"
-            step="0.01"
+            step="1"
             :isEditable="edit"
             @updateValue="refreshValor"
           />
@@ -30,22 +35,24 @@
             class="flex-1"
             title="Data"
             type="date"
-            :value="file.data"
+            :value="converterData(file.data)"
             :isEditable="edit"
             @updateValue="refreshData"
           />
-          <img
-            v-show="!edit"
-            class="edit-icon"
-            @click="changeEdit"
-            src="../assets/pencil-icon.svg"
-          />
-          <img
-            v-show="edit"
-            class="edit-icon"
-            @click="updateFile"
-            src="../assets/check-icon.svg"
-          />
+          <div class="flex flex-row justify-evenly">
+            <img
+              v-show="!edit"
+              class="icon"
+              @click="changeEdit"
+              src="../assets/pencil-icon.svg"
+            />
+            <img
+              v-show="edit"
+              class="icon"
+              @click="disableEdit"
+              src="../assets/check-icon.svg"
+            />
+          </div>
         </div>
       </div>
       <span class="vr"></span>
@@ -54,9 +61,17 @@
         <div class="flex flex-col estabelecimento">
           <div class="flex gap-2 estabelecimento">
             <item class="flex-1" title="Nome" :value="file.razaoSocial" />
-            <item class="flex-1" title="CNPJ" :value="file.cnpj" />
+            <item
+              class="flex-1"
+              title="CNPJ"
+              :value="formatarCNPJ(file.cnpj)"
+            />
           </div>
-          <item class="flex-1" title="Atividade" :value="file.tipoEmpresa" />
+          <item
+            class="flex-1"
+            title="Categoria"
+            :value="formatarPascalCase(file.categoria)"
+          />
         </div>
       </div>
     </div>
@@ -89,7 +104,21 @@ export default {
     },
   },
   methods: {
-    changeEdit() {
+      changeEdit() {
+      this.edit = !this.edit;
+    },
+    disableEdit() {
+      if(this.file.valor) {
+        const valor = this.file.valor;
+        this.file.valor = parseFloat(valor).toFixed(2);
+      }
+      if (!this.file.titulo) {
+          this.$notify({
+          title: "O título da sua nota não pode ser vazio.",
+          duration: 2500,
+        });
+        return;
+      }
       this.edit = !this.edit;
     },
     updateFile() {
@@ -103,6 +132,39 @@ export default {
     },
     refreshData(newValue) {
       this.file.data = moment(newValue).format("DD/MM/YYYY");
+    },
+    formatarCNPJ(cnpj) {
+      cnpj = cnpj.replace(/\D/g, "");
+
+      cnpj = cnpj.replace(/(\d{2})(\d)/, "$1.$2");
+      cnpj = cnpj.replace(/(\d{3})(\d)/, "$1.$2");
+      cnpj = cnpj.replace(/(\d{3})(\d{1,2})$/, "$1/$2");
+
+      cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+
+      return cnpj;
+    },
+    formatarPascalCase(inputString) {
+      if (!inputString) {
+        return "";
+      }
+      return inputString
+        .split(" ")
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ");
+    },
+    converterData(data) {
+      return moment(data, "DD/MM/YYYY").format("YYYY-MM-DD");
+    },
+    deleteItem() {
+      this.$emit('deleteItem');
+    }
+  },
+  watch: {
+    edit() {
+      this.$emit("editingChange", this.edit);
     },
   },
 };
@@ -131,7 +193,7 @@ img {
   width: 150px;
 }
 
-.edit-icon {
+.icon {
   height: 2.5vh;
   width: auto;
   align-self: center;
@@ -155,6 +217,11 @@ a {
   height: fit-content;
 }
 
+.delete {
+  align-self: flex-start;
+  margin-top: -1.3%;
+}
+
 @media (max-width: 600px) {
   .estabelecimento {
     flex-direction: column;
@@ -168,7 +235,7 @@ a {
     flex-direction: column;
   }
 
-  .edit-icon {
+  .icon {
     height: 5vh;
     align-self: flex-end;
   }

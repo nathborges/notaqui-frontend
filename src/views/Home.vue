@@ -50,6 +50,11 @@ main {
   margin-bottom: 1%;
 }
 
+.oi {
+  font-family: WorkSans !important;
+  background-color: black !important;
+}
+
 @media (max-width: 700px) {
   main {
     flex-direction: column;

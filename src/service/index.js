@@ -33,6 +33,7 @@ export default {
       valor: data.valor.toFixed(2),
       titulo: `Nota ${number}`,
       data: moment().format("DD/MM/YYYY"),
+      categoria: data.infoPj.categoria,
     };
 
     number = number + 1;
@@ -61,6 +62,7 @@ export default {
       valor: data.valor.toFixed(2),
       titulo: `Nota ${number}`,
       data: moment().format("DD/MM/YYYY"),
+      categoria: data.infoPj.categoria,
     };
 
     number = number + 1;
@@ -71,12 +73,15 @@ export default {
     const type = getTypeOfFile(file.raw);
     const nome = file.raw.name || '';
 
+    console.log(file.categoria);
+
     const body = {
       infoPj: {
         cnpj: file.cnpj,
         razaoSocial: file.razaoSocial,
         naturezaJuridica: file.naturezaJuridica,
         tipoEmpresa: file.tipoEmpresa,
+        categoria: file.categoria,
       },
       valor: file.valor,
       matricula: "rm88426",

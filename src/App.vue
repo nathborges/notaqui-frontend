@@ -1,4 +1,5 @@
 <template>
+  <notifications />
   <router-view />
 </template>
 
@@ -33,15 +34,26 @@ body {
 
 p {
   font-family: WorkSans;
-  font-size: clamp( 1rem, 0.5vw, 0.3vh);
+  font-size: clamp(1rem, 0.5vw, 0.3vh);
 }
 
 h1 {
   font-family: WorkSans;
-  font-size: clamp( 2rem, 2vw, 2vh);
+  font-size: clamp(2rem, 2vw, 2vh);
 }
 
 h2 {
   font-family: WorkSans;
 }
+
+.vue-notification {
+  background: black !important;
+  font-family: WorkSans !important;
+  padding: 20px !important;
+  font-size: clamp(1rem, 0.5vw, 0.3vh) !important;
+  border-left: none !important;
+}
+
+
+
 </style>
