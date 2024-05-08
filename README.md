@@ -1,6 +1,7 @@
 # Notaqui
 
 Backend do projeto: https://github.com/nathborges/notaqui-backend
+
 Vídeo sobre o projeto: [Link](https://youtu.be/OFvhe_3UgT4)
 
 Live: [www.notaqui.tech](www.notaqui.tech)
